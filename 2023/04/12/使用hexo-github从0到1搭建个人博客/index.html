@@ -1,0 +1,331 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>使用hexo+github从0到1搭建个人博客 | 豪想敲代码的博客</title><meta name="author" content="abb"><meta name="copyright" content="abb"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这是我的第一篇博客，很高兴认识大家，今天想分享一下使用hexo+GitHub从0到1搭建个人博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用hexo+github从0到1搭建个人博客">
+<meta property="og:url" content="https://zengjiahao1222.github.io/2023/04/12/%E4%BD%BF%E7%94%A8hexo-github%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:site_name" content="豪想敲代码的博客">
+<meta property="og:description" content="这是我的第一篇博客，很高兴认识大家，今天想分享一下使用hexo+GitHub从0到1搭建个人博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zengjiahao1222.github.io/images/hexo+github.png">
+<meta property="article:published_time" content="2023-04-12T12:41:50.000Z">
+<meta property="article:modified_time" content="2023-04-13T00:51:43.981Z">
+<meta property="article:author" content="abb">
+<meta property="article:tag" content="教程">
+<meta property="article:tag" content="小白">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zengjiahao1222.github.io/images/hexo+github.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zengjiahao1222.github.io/2023/04/12/%E4%BD%BF%E7%94%A8hexo-github%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/trueanchor" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '使用hexo+github从0到1搭建个人博客',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-04-13 08:51:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/images/hexo+github.png')"><nav id="nav"><span id="blog-info"><a href="/" title="豪想敲代码的博客"><span class="site-name">豪想敲代码的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">使用hexo+github从0到1搭建个人博客</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-12T12:41:50.000Z" title="发表于 2023-04-12 20:41:50">2023-04-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-13T00:51:43.981Z" title="更新于 2023-04-13 08:51:43">2023-04-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="使用hexo+github从0到1搭建个人博客"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><h3 id="1-1-想说的话"><a href="#1-1-想说的话" class="headerlink" title="1.1.想说的话"></a>1.1.想说的话</h3><p>最近在学习 markdown 语法的时候，想着何不搭建一个个人的博客网站来进行分享一下自己的学习经验和心得了，于是马上开干，很快啊，一个简单的 blog 网站就诞生了，下面就来和大家分享一下使用 hexo+GitHub 从 0 到 1 搭建个人博客。</p>
+<h3 id="1-2-准备工作"><a href="#1-2-准备工作" class="headerlink" title="1.2.准备工作"></a>1.2.准备工作</h3><p>在进行搭建博客之前，你需要:</p>
+<blockquote>
+<ul>
+<li>拥有一个 GitHub 账号，没有的话去注册一个</li>
+<li>安装了 node.js、npm，并且了解相关的知识</li>
+<li>安装了 git</li>
+</ul>
+</blockquote>
+<p>小编使用的环境：</p>
+<blockquote>
+<ul>
+<li>Windows10</li>
+<li><a href="mailto:&#x6e;&#111;&#100;&#x65;&#46;&#x6a;&#x73;&#x40;&#x31;&#56;&#x2e;&#49;&#x35;&#46;&#x30;">&#x6e;&#111;&#100;&#x65;&#46;&#x6a;&#x73;&#x40;&#x31;&#56;&#x2e;&#49;&#x35;&#46;&#x30;</a></li>
+<li><a href="mailto:&#x67;&#105;&#116;&#x40;&#x32;&#46;&#x33;&#x39;&#x2e;&#x32;">&#x67;&#105;&#116;&#x40;&#x32;&#46;&#x33;&#x39;&#x2e;&#x32;</a></li>
+<li><a href="mailto:&#104;&#x65;&#120;&#111;&#x40;&#54;&#x2e;&#x33;&#x2e;&#48;">&#104;&#x65;&#120;&#111;&#x40;&#54;&#x2e;&#x33;&#x2e;&#48;</a></li>
+</ul>
+</blockquote>
+<h2 id="2-搭建-GitHub-博客"><a href="#2-搭建-GitHub-博客" class="headerlink" title="2.搭建 GitHub 博客"></a>2.搭建 GitHub 博客</h2><h3 id="2-1-创建仓库"><a href="#2-1-创建仓库" class="headerlink" title="2.1.创建仓库"></a>2.1.创建仓库</h3><p>新建一个名为<code>你的github用户名.github.io</code>的仓库，比如说，如果你的 github 用户名是 zengjiahao1222，那么你就新建<code>zengjiahao1222.github.io</code>的仓库（必须是你的用户名，其它名称无效），将来你的网站访问地址就 s 是<a href="http://zengjiahao1222.github.io](http://test.github.io/)">http://zengjiahao1222.github.io](http://test.github.io/)</a> 了！</p>
+<p>注意事项：</p>
+<blockquote>
+<ol>
+<li>注册的邮箱一定要验证，否则不会成功</li>
+<li>仓库名字必须是<code>username.github.io</code>,其中 username 是你的 GitHub 的用户名</li>
+<li>仓库创建成功不会立即生效，需要过一段时间，大概 10-30 分钟。这个我踩坑了！！！</li>
+</ol>
+</blockquote>
+<h3 id="2-2-绑定域名"><a href="#2-2-绑定域名" class="headerlink" title="2.2.绑定域名"></a>2.2.绑定域名</h3><p>这个不绑定也是可以的，就用默认的<code>xxx.github.io</code>也是可以进行访问的，但是如果你想更加个性化，并且想拥有一个自己的域名，那就去买一个域名吧。</p>
+<p>这里推荐去阿里云注册域名，大公司，有保障！！！</p>
+<h2 id="3-配置-SSH-key"><a href="#3-配置-SSH-key" class="headerlink" title="3.配置 SSH key"></a>3.配置 SSH key</h2><h3 id="3-1-Github-配置-SSH-Key"><a href="#3-1-Github-配置-SSH-Key" class="headerlink" title="3.1.Github 配置 SSH Key"></a>3.1.Github 配置 SSH Key</h3><p>为什么要配置这个呢？因为你提交代码肯定要拥有你的 github 权限才可以，但是直接使用用户名和密码太不安全了，所以我们使用 ssh key 来解决本地和服务器的连接问题。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/. ssh <span class="comment">#检查本机已存在的ssh密钥</span></span><br></pre></td></tr></table></figure>
+
+<p>如果提示：No such file or directory 说明你是第一次使用 git。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;邮件地址&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后连续 3 次回车，最终会生成一个文件在用户目录下，打开用户目录，找到<code>.ssh\id_rsa.pub</code>文件，记事本打开并复制里面的内容，打开你的 github 主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key——&gt;将刚复制的内容粘贴到 key 那里，title 随便填，保存:</p>
+<p><img src="/ssh.png" alt="配置"></p>
+<h3 id="3-2-测试配置是否成功"><a href="#3-2-测试配置是否成功" class="headerlink" title="3.2.测试配置是否成功"></a>3.2.测试配置是否成功</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com <span class="comment"># 注意邮箱地址不用改</span></span><br></pre></td></tr></table></figure>
+
+<p>如果提示<code>Hi zengjiahao1222! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code>，那么恭喜你 SSH 已经配置成功</p>
+<p>此时你还需要配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;liuxianan&quot;</span>// 你的github用户名，非昵称</span><br><span class="line">$ git config --global user.email  <span class="string">&quot;xxx@qq.com&quot;</span>// 填写你的github注册邮箱</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-使用-hexo-框架写博客"><a href="#4-使用-hexo-框架写博客" class="headerlink" title="4.使用 hexo 框架写博客"></a>4.使用 hexo 框架写博客</h2><h3 id="4-1-hexo-简介"><a href="#4-1-hexo-简介" class="headerlink" title="4.1.hexo 简介"></a>4.1.hexo 简介</h3><p>Hexo 是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持 Markdown 格式，有众多优秀插件和主题。</p>
+<p>官网：<a target="_blank" rel="noopener" href="http://hexo.io/">http://hexo.io</a></p>
+<p>github：<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo">https://github.com/hexojs/hexo</a></p>
+<h3 id="4-2-原理"><a href="#4-2-原理" class="headerlink" title="4.2.原理"></a>4.2.原理</h3><p>由于 github pages 存放的都是静态文件，博客存放的不只是文章内容，还有文章列表、分类、标签、翻页等动态内容，假如每次写完一篇文章都要手动更新博文目录和相关链接信息，相信谁都会疯掉，所以 hexo 所做的就是将这些 md 文件都放在本地，每次写完文章后调用写好的命令来批量完成相关页面的生成，然后再将有改动的页面提交到 github。</p>
+<h3 id="4-3-安装"><a href="#4-3-安装" class="headerlink" title="4.3.安装"></a>4.3.安装</h3><p>建议使用 git bash 来执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
+
+<p>hexo 有 2 种<code>_config.yml</code>文件，一个是根目录下的全局的<code>_config.yml</code>，一个是各个<code>theme</code>下的；</p>
+<h3 id="4-4-初始化"><a href="#4-4-初始化" class="headerlink" title="4.4.初始化"></a>4.4.初始化</h3><p>在电脑的某个地方新建一个名为 hexo 的文件夹（名字可以随便取），比如我的是<code>D:\hexo</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /d/hexo/</span><br><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
+
+<p>hexo 会自动下载一些文件到这个目录，包括 node_modules</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g <span class="comment"># 生成</span></span><br><span class="line">$ hexo s <span class="comment"># 启动服务</span></span><br></pre></td></tr></table></figure>
+
+<p>执行以上命令之后，hexo 就会在 public 文件夹生成相关 html 文件，这些文件将来都是要提交到 github 去的：</p>
+<p><code>hexo s</code>是开启本地预览服务，打开浏览器访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 即可看到内容</p>
+<p>第一次初始化的时候 hexo 已经帮我们写了一篇名为 Hello World 的文章，默认的主题比较丑，打开时就是这个样子：</p>
+<h3 id="4-5-修改主题"><a href="#4-5-修改主题" class="headerlink" title="4.5.修改主题"></a>4.5.修改主题</h3><p>个人觉得官方主题有点不好看，所有就继续了主题的更换，我在进行了一圈主题对比后，个人比较喜欢<a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">hexo-theme-butterfly</a></p>
+<p>首先我们来下载这个主题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /d/hexo/</span><br><span class="line">$ npm install hexo-theme-butterfly</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<blockquote>
+<ol>
+<li>&#96;&#96;还可以用<code>git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</code>来代替，但是我用这个在后续的修改主题样式的过程中经常出现样式不生效的情况，换成这个<code>npm install hexo-theme-butterfly</code>安装方式后基本解决了这个问题。</li>
+<li>值得一提的是，通过 npm 安装并不会在 themes 里生成主题文件夹，而是在 node_modules 里生成</li>
+<li>butterfly 主题美化教程<a target="_blank" rel="noopener" href="https://butterfly.js.org/">butterfly</a></li>
+</ol>
+</blockquote>
+<p>修改<code>_config.yml</code>中的<code>theme: landscape</code>改为<code>theme: yilia</code>，然后重新执行<code>hexo g</code>来重新生成。每次修改了配置文件都要记得先进行<code>hexo clean</code>来清理一下<code>public</code>的内容，然后<code>hexo g</code></p>
+<h3 id="4-5-上传到-Github"><a href="#4-5-上传到-Github" class="headerlink" title="4.5.上传到 Github"></a>4.5.上传到 Github</h3><p>我们先来安装一个插件，要不然后续的<code>hexo d</code>操作会报错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>如果你一切都配置好了，发布上传很容易，一句<code>hexo d</code>就搞定，当然关键还是你要把所有东西配置好。</p>
+<p>首先，<code>ssh key</code>肯定要配置好。</p>
+<p>其次，配置<code>_config.yml</code>中有关 deploy 的部分</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">git@github.com:zengjiahao1222/zengjiahao1222.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在这里，branch 要写 main，因为 2020 年 10 月 1 日 GitHub 官方将默认分支 master 改为了 main</p>
+</blockquote>
+<h3 id="4-6-常用-hexo-命令"><a href="#4-6-常用-hexo-命令" class="headerlink" title="4.6.常用 hexo 命令"></a>4.6.常用 hexo 命令</h3><p>常见命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;postName&quot;</span> <span class="comment">#新建文章</span></span><br><span class="line">hexo new page <span class="string">&quot;pageName&quot;</span> <span class="comment">#新建页面</span></span><br><span class="line">hexo generate <span class="comment">#生成静态页面至public目录</span></span><br><span class="line">hexo server <span class="comment">#开启预览访问端口（默认端口4000，&#x27;ctrl + c&#x27;关闭server）</span></span><br><span class="line">hexo deploy <span class="comment">#部署到GitHub</span></span><br><span class="line">hexo <span class="built_in">help</span>  <span class="comment"># 查看帮助</span></span><br><span class="line">hexo version  <span class="comment">#查看Hexo的版本</span></span><br></pre></td></tr></table></figure>
+
+<p>缩写：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo n == hexo new</span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo d == hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>组合命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo s -g <span class="comment">#生成并本地预览</span></span><br><span class="line">hexo d -g <span class="comment">#生成并上传</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-7-写博客"><a href="#4-7-写博客" class="headerlink" title="4.7.写博客"></a>4.7.写博客</h3><p>定位到我们的 hexo 根目录，执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&#x27;my-first-blog&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>hexo 会帮我们在<code>_posts</code>下生成相关 md 文件,我们只需要打开这个文件就可以开始写博客了。当然你也可以直接自己新建 md 文件，用这个命令的好处是帮我们自动生成了时间。</p>
+<p>一般完整格式如下：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: postName #文章页面上的显示名称，一般是中文</span><br><span class="line">date: 2013-12-02 15:30:16 #文章生成时间，一般不改，当然也可以任意修改</span><br><span class="line">categories: 默认分类 #分类</span><br><span class="line">tags: [tag1, tag2, tag3] #文章标签，可空，多标签请用格式，注意:后面有个空格</span><br><span class="line"><span class="section">description: 附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">以下是正文</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-7-1-写博客的工具"><a href="#4-7-1-写博客的工具" class="headerlink" title="4.7.1.写博客的工具"></a>4.7.1.写博客的工具</h4><p>这里推荐 Typora</p>
+<h2 id="5-结束语"><a href="#5-结束语" class="headerlink" title="5.结束语"></a>5.结束语</h2><p>这次的用 hexo+github 搭建个人博客网站的教程到此就结束了，不知道大家是否已经搭建完成了呢，如有知识点和内容上面的错误，请及时联系我来改正</p>
+<p>部分内容转载自<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html">小茗同学的博客园</a>,如有侵权，请立刻联系我，进行修改。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://zengjiahao1222.github.io">abb</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zengjiahao1222.github.io/2023/04/12/%E4%BD%BF%E7%94%A8hexo-github%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">https://zengjiahao1222.github.io/2023/04/12/%E4%BD%BF%E7%94%A8hexo-github%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zengjiahao1222.github.io" target="_blank">豪想敲代码的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%99%E7%A8%8B/">教程</a><a class="post-meta__tags" href="/tags/%E5%B0%8F%E7%99%BD/">小白</a><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a></div><div class="post_share"><div class="social-share" data-image="/images/hexo+github.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/images/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/images/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/images/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">abb</div><div class="author-info__description">记录生活与学习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zengjiahao1222"><i class="fab fa-github"></i><span>关注</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zengjiahao1222" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2939921882@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/2939921882" target="_blank" title="QQ"><i class="fa-brands fa-qq" style="color: #304880;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">QQ:2939921882说明来意</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">1.前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%83%B3%E8%AF%B4%E7%9A%84%E8%AF%9D"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.想说的话</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">1.2.准备工作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%90%AD%E5%BB%BA-GitHub-%E5%8D%9A%E5%AE%A2"><span class="toc-number">2.</span> <span class="toc-text">2.搭建 GitHub 博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-number">2.1.</span> <span class="toc-text">2.1.创建仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E7%BB%91%E5%AE%9A%E5%9F%9F%E5%90%8D"><span class="toc-number">2.2.</span> <span class="toc-text">2.2.绑定域名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E9%85%8D%E7%BD%AE-SSH-key"><span class="toc-number">3.</span> <span class="toc-text">3.配置 SSH key</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Github-%E9%85%8D%E7%BD%AE-SSH-Key"><span class="toc-number">3.1.</span> <span class="toc-text">3.1.Github 配置 SSH Key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E6%B5%8B%E8%AF%95%E9%85%8D%E7%BD%AE%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F"><span class="toc-number">3.2.</span> <span class="toc-text">3.2.测试配置是否成功</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BD%BF%E7%94%A8-hexo-%E6%A1%86%E6%9E%B6%E5%86%99%E5%8D%9A%E5%AE%A2"><span class="toc-number">4.</span> <span class="toc-text">4.使用 hexo 框架写博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-hexo-%E7%AE%80%E4%BB%8B"><span class="toc-number">4.1.</span> <span class="toc-text">4.1.hexo 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%8E%9F%E7%90%86"><span class="toc-number">4.2.</span> <span class="toc-text">4.2.原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%AE%89%E8%A3%85"><span class="toc-number">4.3.</span> <span class="toc-text">4.3.安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">4.4.</span> <span class="toc-text">4.4.初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98"><span class="toc-number">4.5.</span> <span class="toc-text">4.5.修改主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E4%B8%8A%E4%BC%A0%E5%88%B0-Github"><span class="toc-number">4.6.</span> <span class="toc-text">4.5.上传到 Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6-%E5%B8%B8%E7%94%A8-hexo-%E5%91%BD%E4%BB%A4"><span class="toc-number">4.7.</span> <span class="toc-text">4.6.常用 hexo 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7-%E5%86%99%E5%8D%9A%E5%AE%A2"><span class="toc-number">4.8.</span> <span class="toc-text">4.7.写博客</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-7-1-%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">4.8.1.</span> <span class="toc-text">4.7.1.写博客的工具</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%BB%93%E6%9D%9F%E8%AF%AD"><span class="toc-number">5.</span> <span class="toc-text">5.结束语</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/04/12/%E4%BD%BF%E7%94%A8hexo-github%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="使用hexo+github从0到1搭建个人博客"><img src="/images/hexo+github.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用hexo+github从0到1搭建个人博客"/></a><div class="content"><a class="title" href="/2023/04/12/%E4%BD%BF%E7%94%A8hexo-github%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" title="使用hexo+github从0到1搭建个人博客">使用hexo+github从0到1搭建个人博客</a><time datetime="2023-04-12T12:41:50.000Z" title="发表于 2023-04-12 20:41:50">2023-04-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By abb</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: '',
+      appKey: '',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'https://zengjiahao1222.github.io/2023/04/12/%E4%BD%BF%E7%94%A8hexo-github%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/'
+    this.page.identifier = '/2023/04/12/%E4%BD%BF%E7%94%A8hexo-github%E4%BB%8E0%E5%88%B01%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/'
+    this.page.title = '使用hexo+github从0到1搭建个人博客'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+
+  document.getElementById('darkmode').addEventListener('click', () => {
+    setTimeout(() => window.disqusReset(), 200)
+  })
+}
+
+if ('Valine' === 'Disqus' || !true) {
+  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="I,LOVE,YOU" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
