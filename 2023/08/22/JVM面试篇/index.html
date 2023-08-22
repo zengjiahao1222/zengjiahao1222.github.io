@@ -1,0 +1,574 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>JVM面试篇 | 豪想敲代码的博客</title><meta name="author" content="abb"><meta name="copyright" content="abb"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="JVM面试篇,主要记录了JVM相关的常用面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM面试篇">
+<meta property="og:url" content="https://zengjiahao1222.github.io/2023/08/22/JVM%E9%9D%A2%E8%AF%95%E7%AF%87/index.html">
+<meta property="og:site_name" content="豪想敲代码的博客">
+<meta property="og:description" content="JVM面试篇,主要记录了JVM相关的常用面试题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg">
+<meta property="article:published_time" content="2023-08-22T13:07:37.000Z">
+<meta property="article:modified_time" content="2023-08-22T13:09:32.284Z">
+<meta property="article:author" content="abb">
+<meta property="article:tag" content="小白">
+<meta property="article:tag" content="学习">
+<meta property="article:tag" content="程序人生">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://zengjiahao1222.github.io/2023/08/22/JVM%E9%9D%A2%E8%AF%95%E7%AF%87/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/trueanchor" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JVM面试篇',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-22 21:09:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/images/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="豪想敲代码的博客"><span class="site-name">豪想敲代码的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM面试篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-08-22T13:07:37.000Z" title="发表于 2023-08-22 21:07:37">2023-08-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-08-22T13:09:32.284Z" title="更新于 2023-08-22 21:09:32">2023-08-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM面试篇"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="JVM组成"><a href="#JVM组成" class="headerlink" title="JVM组成"></a>JVM组成</h1><h2 id="JVM是什么"><a href="#JVM是什么" class="headerlink" title="JVM是什么"></a>JVM是什么</h2><p><strong>Java Virtual Machine</strong>  Java程序的运行环境（Java二进制字节码的运行环境）</p>
+<p>好处：</p>
+<ul>
+<li>一次编写，到处运行</li>
+<li>自动内存管理，垃圾回收机制</li>
+</ul>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230821202523454.png" alt="image-20230821202523454"></p>
+<h2 id="什么是程序计算器"><a href="#什么是程序计算器" class="headerlink" title="什么是程序计算器"></a>什么是程序计算器</h2><p>程序计算器：线程私有的，内部保存的字节码的行号。用于记录正在执行的字节码指令的地址</p>
+<h2 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h2><p>线程共享的区域：主要用来保存对象实例、数组等，当堆中没有内存空间可分配给实例，也无法再扩展时，则抛出OutOfMemoryError异常。</p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230821203607302.png" alt="image-20230821203607302"></p>
+<ul>
+<li>年轻代被划分为三部分，Eden区和两个严格相同的Survivor区，根据JVM的策略，在经过几次垃圾收集后，仍然存活于Survivor的对象将被移动到老年代区间</li>
+<li>老年代：主要保存生命周期长的对象，一般是一些老的对象</li>
+<li>元空间：保存类信息、静态变量、常量、编译后的代码</li>
+<li>1.7中有一个永久代，存储的和元空间的一样，移到本地内存的元空间中，防止内存溢出</li>
+</ul>
+<h2 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h2><p>Java Virtual machine Stacks（Java虚拟机栈）</p>
+<ul>
+<li>每个线程运行时所需要的内存，称为虚拟机栈，先进后出</li>
+<li>每个栈由多个栈帧（frame）组成，对应着每次方法调用时所占用的内存</li>
+<li>每个线程只能有一个活动栈帧，对应着当前正在执行的那个方法</li>
+</ul>
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230821212320978.png" alt="image-20230821212320978" style="zoom:67%;">
+
+<h3 id="垃圾回收机制释放涉及栈内存？"><a href="#垃圾回收机制释放涉及栈内存？" class="headerlink" title="垃圾回收机制释放涉及栈内存？"></a>垃圾回收机制释放涉及栈内存？</h3><p>垃圾回收主要指就是堆内存，当栈帧弹栈以后，内存就会释放</p>
+<h3 id="栈内存分配越大越好吗？"><a href="#栈内存分配越大越好吗？" class="headerlink" title="栈内存分配越大越好吗？"></a>栈内存分配越大越好吗？</h3><p>不一定，默认的栈内存通常为1024k</p>
+<p>栈帧过大会导致线程数变少，例如，机器总内存为512M，目前能活动的线程数则为512个，如果把栈内存改为2048k，那么能活动的栈帧就会减半</p>
+<h3 id="方法内的局部变量是否线程安全？"><a href="#方法内的局部变量是否线程安全？" class="headerlink" title="方法内的局部变量是否线程安全？"></a>方法内的局部变量是否线程安全？</h3><ul>
+<li>如果方法内部变量没有逃离方法的作用范围，它是线程安全的</li>
+<li>如果是局部变量引用了对象，并逃离方法的作用范围，需要考虑线程安全</li>
+</ul>
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230821213058556.png" alt="image-20230821213058556" style="zoom: 67%;">
+
+<h3 id="栈内存溢出"><a href="#栈内存溢出" class="headerlink" title="栈内存溢出"></a>栈内存溢出</h3><ul>
+<li>栈帧过多导致栈内存溢出，典型问题：递归调用</li>
+<li>栈帧过大导致内存溢出</li>
+</ul>
+<h3 id="堆栈的区别是什么？"><a href="#堆栈的区别是什么？" class="headerlink" title="堆栈的区别是什么？"></a>堆栈的区别是什么？</h3><ul>
+<li>栈内存一般会用来存储局部变量和方法调用，当堆内存是用来存储Java对象和数组的。堆会GC垃圾回收，而栈不会</li>
+<li>栈内存是线程私有的，而堆内存是线程共有的</li>
+<li>两者异常错误不同，但如果栈内存或者堆内存不足都会抛出异常<ul>
+<li>栈空间不足：java.lang.StackOverFlowError</li>
+<li>堆空间不足：java.lang.OutOfMemoryError</li>
+</ul>
+</li>
+</ul>
+<h2 id="解释一下方法区"><a href="#解释一下方法区" class="headerlink" title="解释一下方法区"></a>解释一下方法区</h2><ul>
+<li>方法区（Method Area）是各个线程<strong>共享的内存区域</strong></li>
+<li>主要存储类的信息、运行时常量池</li>
+<li>虚拟机启动的时候创建，关闭虚拟机时释放</li>
+<li>如果方法区域中的内存无法满足分配请求，则会抛出OutOfMemroyError：Metaspace</li>
+</ul>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230821214621900.png" alt="image-20230821214621900"></p>
+<h3 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h3><p>可以看作是一张表，虚拟机指令根据这张常量表找到要执行的类名、方法名、参数类型、字面量等信息</p>
+<p><code>javap -v XXXXX.class</code> 查看字节码结构（类的基本信息、常量池、方法定义）</p>
+<h3 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h3><p>常量池是<code>*.class</code>文件中的，当该类被加载，它的常量池信息就会放入到运行时常量池，并把里面的符号地址变为真实地址</p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230821215852056.png" alt="image-20230821215852056"></p>
+<h2 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h2><p>直接内存：并不属于JVM中的内存结构，不由JVM进行管理。是虚拟机的系统内存，常见于NIO操作时，用于数据缓冲区，它分配回收成本较高，但读写性能高</p>
+<h3 id="常规IO的数据拷贝流程"><a href="#常规IO的数据拷贝流程" class="headerlink" title="常规IO的数据拷贝流程"></a>常规IO的数据拷贝流程</h3><p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230821220530317.png" alt="image-20230821220530317"></p>
+<h3 id="NIO数据拷贝流程"><a href="#NIO数据拷贝流程" class="headerlink" title="NIO数据拷贝流程"></a>NIO数据拷贝流程</h3><p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230821220554047.png" alt="image-20230821220554047"></p>
+<h1 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h1><h2 id="什么是类加载器，类加载器有哪些"><a href="#什么是类加载器，类加载器有哪些" class="headerlink" title="什么是类加载器，类加载器有哪些"></a>什么是类加载器，类加载器有哪些</h2><p>JVM只会运行二进制文件，类加载器的作用就是将<strong>字节码文件加载到JVM</strong>中，从而让Java程序能够启动起来</p>
+<p>类加载器有哪些：</p>
+<ul>
+<li>启动类加载器（BootStrap ClassLoader）：加载JAVA_HOME&#x2F;jre&#x2F;lib目录下的库</li>
+<li>扩展类加载器（ExtClassLoader）：主要加载JAVA_HOME&#x2F;jre&#x2F;lib&#x2F;ext目录下的类</li>
+<li>应用类加载器（AppClassLoader）：主要加载classPath下的类</li>
+<li>自定义类加载器（CustomizeClassLoader）：自定义类继承ClassLoader，实现自定义类加载规则</li>
+</ul>
+<h2 id="什么是双亲委派模型"><a href="#什么是双亲委派模型" class="headerlink" title="什么是双亲委派模型"></a>什么是双亲委派模型</h2><p>加载某一个类，先委托上一级的加载器进行加载，如果上级加载器也有上级，则会继续向上委托，如果该类委托上级没有被加载，子加载器尝试加载该类</p>
+<h3 id="JVM为什么采用双亲委派机制"><a href="#JVM为什么采用双亲委派机制" class="headerlink" title="JVM为什么采用双亲委派机制"></a>JVM为什么采用双亲委派机制</h3><ul>
+<li>通过双亲委派机制可以避免某一个类被重复加载，当父类已经加载后则无需重复加载，保证唯一性</li>
+<li>为了安全，保证类库API不会被修改</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.lang;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">String</span>&#123;	</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[]args)</span>&#123;</span><br><span class="line">    	System.out.println(<span class="string">&quot;demo info&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行main函数，会出现异常，在类java.lang.String中找不到main方法</p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822095626358.png" alt="image-20230822095626358"></p>
+<p>这是由于双亲委派的机制，java.lang.String在启动类加载器得到加载，因为在核心jre库中有其相同名字的类文件，但该类中并没有main方法。这样就能防止恶意篡改核心API库</p>
+<h2 id="类装载的执行过程"><a href="#类装载的执行过程" class="headerlink" title="类装载的执行过程"></a>类装载的执行过程</h2><p>类从加载到虚拟机开始，直到卸载为止，它的整个生命周期包括了：加载、验证、准备、解析、初始化、使用和卸载这7个阶段。其中验证、准备、解析这三个部分称为连接（linking）</p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822100900726.png" alt="image-20230822100900726"></p>
+<h3 id="具体分析"><a href="#具体分析" class="headerlink" title="具体分析"></a>具体分析</h3><p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822100944674.png" alt="image-20230822100944674"></p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822101007090.png" alt="image-20230822101007090"></p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822101025617.png" alt="image-20230822101025617"></p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822101048760.png" alt="image-20230822101048760"></p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822101110733.png" alt="image-20230822101110733"></p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822101125161.png" alt="image-20230822101125161"></p>
+<ol>
+<li>加载：查找和导入calss文件</li>
+<li>验证：保证加载类的准确性</li>
+<li>准备：为类变量分配内存并设置类变量初始值</li>
+<li>解析：把类中的符号引用转化为直接引用</li>
+<li>初始化：对类的静态变量，静态代码块执行初始化操作</li>
+<li>使用：JVM开始从入口方法开始执行用户的程序代码</li>
+<li>卸载：当用户程序代码执行完毕后，JVM便开始销毁创建的Class对象</li>
+</ol>
+<h1 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h1><h2 id="对象什么时候可以被垃圾器回收"><a href="#对象什么时候可以被垃圾器回收" class="headerlink" title="对象什么时候可以被垃圾器回收"></a>对象什么时候可以被垃圾器回收</h2><p>如果一个或多个对象没有任何引用指向它了，那么这个对象现在就是垃圾，如果定位了垃圾，则可能会被垃圾回收期回收</p>
+<p>如果要定位什么是垃圾，有两种方式，第一个是<strong>引用计数法</strong>，第二个是<strong>可达性分析算法</strong></p>
+<h3 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h3><p>一个对象被引用了一次，在当前的对象头上递增一次引用次数，如果这个对象的引用次数为0，代表这个对象可回收</p>
+<p><strong>当对象间出现了循环引用，引用计数法就会失效</strong></p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822103444492.png" alt="image-20230822103444492"></p>
+<h3 id="可达性分析算法"><a href="#可达性分析算法" class="headerlink" title="可达性分析算法"></a>可达性分析算法</h3><p>现在的虚拟机采用的都是通过可达性分析算法来确定哪些内容是垃圾</p>
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822103809848.png" alt="image-20230822103809848" style="zoom:67%;">
+
+<p><strong>X，Y这两个节点是可回收的</strong></p>
+<ul>
+<li>Java虚拟机中的垃圾回收器采用可达性分析来探索所有存活的对象</li>
+<li>扫描堆中的对象，看看是否能够沿着GC Root对象为起点的引用链找到该对象，找不到，表示可以回收</li>
+</ul>
+<blockquote>
+<p>哪些对象可以作为GC Root？</p>
+<ul>
+<li>虚拟机栈（栈帧中的本地变量表）中引用的对象</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中JNI（即一般说的Native方法）引用的对象</li>
+</ul>
+</blockquote>
+<h2 id="JVM垃圾回收算法"><a href="#JVM垃圾回收算法" class="headerlink" title="JVM垃圾回收算法"></a>JVM垃圾回收算法</h2><ul>
+<li>标记清除算法</li>
+<li>复制算法</li>
+<li>标记整理算法</li>
+</ul>
+<h3 id="标记清除算法"><a href="#标记清除算法" class="headerlink" title="标记清除算法"></a>标记清除算法</h3><p>标记清除算法，是将垃圾回收分为2个阶段，分别是标记和清除</p>
+<ol>
+<li>根据可达性算法得出垃圾进行标记</li>
+<li>对这些标记为可回收的内容进行垃圾回收</li>
+</ol>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822110348929.png" alt="image-20230822110348929"></p>
+<h3 id="标记整理算法"><a href="#标记整理算法" class="headerlink" title="标记整理算法"></a>标记整理算法</h3><p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822110434226.png" alt="image-20230822110434226"></p>
+<p>优缺点同标记清除算法，解决了标记清除算法的碎片化的问题，同时，标记压缩算法多了一步，对象移动内存位置的步骤，其效率也有一定的影响</p>
+<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822110648388.png" alt="image-20230822110648388"></p>
+<p>优点：</p>
+<ul>
+<li>在垃圾对象多的情况下，效率较高</li>
+<li>清理后，内存无碎片</li>
+</ul>
+<p>缺点：</p>
+<p>分配的2块内存空间，在同一时刻，只能使用一半，内存使用率较低</p>
+<h2 id="JVM中的分代回收"><a href="#JVM中的分代回收" class="headerlink" title="JVM中的分代回收"></a>JVM中的分代回收</h2><p>在java8时，堆被分为两份：<strong>新生代和老年代【1：2】</strong></p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822151246047.png" alt="image-20230822151246047"></p>
+<p>对于新生代，内部又被划分为三个区域</p>
+<ul>
+<li>伊甸园区Eden，新生的对象都被分配到这里</li>
+<li>幸存者区survivor（分为from和to）</li>
+<li>Eden区，from区，to区【8：1：1】</li>
+</ul>
+<h3 id="分代收集算法的工作机制"><a href="#分代收集算法的工作机制" class="headerlink" title="分代收集算法的工作机制"></a>分代收集算法的工作机制</h3><ul>
+<li>新建的对象，都会被分配到Eden区</li>
+<li>当Eden内存不足，标记Eden和from（现阶段没有）的存活对象</li>
+<li>将存活对象采用复制算法复制到to中，复制完毕后，Eden和from内存都会被释放</li>
+<li>经过一段时间后Eden的内存又出现不足，标记Eden区域和to区域的存活对象，将存活对象复制到from区</li>
+<li>当幸存区对象熬过几次回收（最多15次），晋升到老年代（幸存区内存不足或大对象会导致提前晋升）</li>
+</ul>
+<h3 id="MinorGC、MixedGC、FullGC的区别是什么"><a href="#MinorGC、MixedGC、FullGC的区别是什么" class="headerlink" title="MinorGC、MixedGC、FullGC的区别是什么"></a>MinorGC、MixedGC、FullGC的区别是什么</h3><ul>
+<li>MinorGC【young GC】发生在新生代的垃圾回收，暂停时间短（STW）</li>
+<li>Mixed GC 新生代+老年代部分区域的垃圾回收，G1收集器特有</li>
+<li>FullGC：新生代+老年代完整垃圾回收，暂停时间长（STW），应尽量避免</li>
+</ul>
+<blockquote>
+<p>STW（Stop-The-World）：暂停所有应用程序线程，等待垃圾回收的完成</p>
+</blockquote>
+<h2 id="JVM有哪些垃圾回收器"><a href="#JVM有哪些垃圾回收器" class="headerlink" title="JVM有哪些垃圾回收器"></a>JVM有哪些垃圾回收器</h2><p>在JVM中，实现了多种垃圾收集器，包括：</p>
+<ul>
+<li>串行垃圾收集器</li>
+<li>并行垃圾收集器</li>
+<li>CMS（并发）垃圾收集器</li>
+<li>G1垃圾收集器</li>
+</ul>
+<h3 id="串行垃圾收集器"><a href="#串行垃圾收集器" class="headerlink" title="串行垃圾收集器"></a>串行垃圾收集器</h3><p>Serial和Serial Old串行垃圾收集器，是指使用单线程进行垃圾回收，堆内存较小，适合个人电脑</p>
+<ul>
+<li>Serial 作用于新生代，采用复制算法</li>
+<li>Serial Old作用于老年代，采用标记整理算法</li>
+</ul>
+<p>垃圾回收时，只有一个线程在工作，并且Java应用中的所有线程都要暂停（STW），等待垃圾回收的完成</p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822155626011.png" alt="image-20230822155626011"></p>
+<h3 id="并行垃圾收集器"><a href="#并行垃圾收集器" class="headerlink" title="并行垃圾收集器"></a>并行垃圾收集器</h3><p>Parallel New和Parallel Old是一个并行垃圾回收器，JDK8默认使用此垃圾回收器</p>
+<ul>
+<li>Parallel New作用于新生代，采用复制算法</li>
+<li>Parallel Old作用于老年代，采用标记整理算法</li>
+</ul>
+<p>垃圾回收时，多个线程在工作，并且Java应用中的所有线程都有暂停（STW），等待垃圾回收完成</p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822155900644.png" alt="image-20230822155900644"></p>
+<p>CMS（并发）垃圾收集器</p>
+<p>CMS全称Concurrent Mark Sweep，是一款<strong>并发</strong>的、使用<strong>标记清除算法</strong>的垃圾回收器，该回收器是<strong>针对老年代垃圾回收</strong>的，是一款以获取最短回收停顿时间为目标的收集器，停顿时间短，用户体验好。其最大特点是在进行垃圾回收时，应用仍然能正常运行</p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822160431039.png" alt="image-20230822160431039"></p>
+<h2 id="G1垃圾收集器"><a href="#G1垃圾收集器" class="headerlink" title="G1垃圾收集器"></a>G1垃圾收集器</h2><ul>
+<li>应用于新生代和老年代，在<strong>JDK9之后默认使用G1</strong></li>
+<li>划分成多个区域，每个区域都可以充当Eden、survivor、old、humongous，其中humongous专为大对象准备</li>
+<li>采用复制算法</li>
+<li>响应时间与吞吐量兼顾</li>
+<li>分为三个阶段：新生代回收，并发标记，混合收集</li>
+<li>如果并发失败（即回收速度赶不上创建新对象速度），会触发Full GC</li>
+</ul>
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822162208215.png" alt="image-20230822162208215" style="zoom: 67%;">
+
+<h3 id="Young-Collection（年轻代垃圾回收）"><a href="#Young-Collection（年轻代垃圾回收）" class="headerlink" title="Young Collection（年轻代垃圾回收）"></a>Young Collection（年轻代垃圾回收）</h3><ul>
+<li>初始化时，所有区域都处于空闲状态</li>
+<li>创建了一些对象，跳出一些空闲区域作为Eden区存储这些对象</li>
+<li>当Eden区需要垃圾回收时，挑出一个空闲区作为幸存区，用复制算法复制存活对象，需要暂停用户线程</li>
+<li>随着时间流逝，Eden的内存又有不足</li>
+<li>将Eden以及之前幸存区中存活对象，采用复制算法，复制到新的幸存区，其中较老对象晋升至老年代</li>
+</ul>
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822163325213.png" alt="image-20230822163325213" style="zoom:50%;">
+
+<h3 id="Young-Collection-Concurrent-Mark（年轻代垃圾回收-并发标记）"><a href="#Young-Collection-Concurrent-Mark（年轻代垃圾回收-并发标记）" class="headerlink" title="Young Collection + Concurrent Mark（年轻代垃圾回收+并发标记）"></a>Young Collection + Concurrent Mark（年轻代垃圾回收+并发标记）</h3><p>当老年代占用内存超过阈值（默认是45%）后，触发并发标记，这时无需暂停用户线程</p>
+<ul>
+<li>并发标记之后，会重新标记阶段解决漏标问题，此时需要暂停用户线程</li>
+<li>这些都完成后就最大了老年代有哪些存活对象，随后进入<strong>混合收集阶段</strong>。此时不会对所有老年代区域进行回收，而是根据<strong>暂停时间目标</strong>优先回收价值高（存活对象少）的区域（这就是Gabage First名称的由来）</li>
+</ul>
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822164208464.png" alt="image-20230822164208464" style="zoom:50%;">
+
+<h3 id="Mixed-Collection（混合垃圾回收）"><a href="#Mixed-Collection（混合垃圾回收）" class="headerlink" title="Mixed Collection（混合垃圾回收）"></a>Mixed Collection（混合垃圾回收）</h3><p>混合收集阶段，参与复制的有Eden、survivor、old</p>
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822164307410.png" alt="image-20230822164307410" style="zoom:50%;">
+
+<h2 id="强引用、软引用、弱引用、虚引用"><a href="#强引用、软引用、弱引用、虚引用" class="headerlink" title="强引用、软引用、弱引用、虚引用"></a>强引用、软引用、弱引用、虚引用</h2><p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822170508159.png" alt="image-20230822170508159"></p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822170533328.png" alt="image-20230822170533328"></p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822170559049.png" alt="image-20230822170559049"></p>
+<ul>
+<li>强引用：只要所有GC Roots能找到，就不会被回收</li>
+<li>软引用：需要配合SoftReference使用，当垃圾多次回收，内存依然不够的时候会回收软引用对象</li>
+<li>弱引用：需要配合WeakReference使用，只要进行了垃圾回收，就会把弱引用对象回收</li>
+<li>虚引用：必须配合引用队列使用，被引用对象回收时，会将虚引用入队，由Reference Handler线程调用虚引用相关方法释放直接内存</li>
+</ul>
+<h1 id="JVM实践"><a href="#JVM实践" class="headerlink" title="JVM实践"></a>JVM实践</h1><h2 id="JVM调优的参数可以在哪里设置参数值"><a href="#JVM调优的参数可以在哪里设置参数值" class="headerlink" title="JVM调优的参数可以在哪里设置参数值"></a>JVM调优的参数可以在哪里设置参数值</h2><ul>
+<li><p>war包部署在tomcat中设置</p>
+<p>修改<code>TOMCAT_HOME/bin/catalina.sh</code>文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">JAVA_OPTS=<span class="string">&quot;-Xms512m -Xmx1024m&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jar包部署在启动参数设置</p>
+<p>通常在linux系统下直接加参数启动springboot项目</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup java -Xms512m -Xmx1024m -jar xxxxx.jar  --spring.profiles.active=prod &amp;</span><br></pre></td></tr></table></figure>
+
+<p>nohup：用于在系统后台不挂断地运行命令，退出终端不会影响程序地运行</p>
+<p>参数 **&amp;**：让命令在后台执行，终端退出后命令依旧执行</p>
+</li>
+</ul>
+<h2 id="JVM调优的参数"><a href="#JVM调优的参数" class="headerlink" title="JVM调优的参数"></a>JVM调优的参数</h2><p>对于JVM调优，主要就是调整年轻代、老年代、元空间的内存空间大小及使用的垃圾回收器类型</p>
+<p><a target="_blank" rel="noopener" href="https://www.oracle.com/java/technologies/javase/vmoptions-jsp.html">调优参数官网</a></p>
+<ul>
+<li>设置堆空间大小</li>
+<li>虚拟机栈的设置</li>
+<li>年轻代中Eden区和两个Survivor区的大小比例</li>
+<li>年轻代晋升老年代阈值</li>
+<li>设置垃圾回收收集器</li>
+</ul>
+<h3 id="设置堆空间大小"><a href="#设置堆空间大小" class="headerlink" title="设置堆空间大小"></a>设置堆空间大小</h3><p>设置堆的初始值大小和最大大小，为了防止垃圾收集器在初始大小、最大大小直之间收缩堆而产生额外的时间，通常把最大、初始大小设置为相同的值</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-Xms：设置堆的初始化大小</span><br><span class="line">-Xmx：设置堆的最大大小</span><br><span class="line"></span><br><span class="line">-Xms：1024</span><br><span class="line">-XMs：1024k</span><br><span class="line">-Xms：1024m</span><br><span class="line">-Xms：1g</span><br><span class="line">不指定单位默认为字节</span><br><span class="line">指定单位，按照指定的单位设置</span><br></pre></td></tr></table></figure>
+
+<p>堆空间设置多少合适？</p>
+<ul>
+<li>最大大小的默认值是物理内存的1&#x2F;4，初始大小是物理内存的1&#x2F;64</li>
+<li>堆太小，可能会频繁的导致年轻代和老年代的垃圾回收，会产生STW，暂停用户线程</li>
+<li>对内存大肯定是好的，但存在风险，假如发生了fullGC，它会扫描整个堆空间，暂停用户线程的时间长</li>
+<li>设置参考推荐：尽量大，也要考察一下当前计算机其他程序的内存使用情况</li>
+</ul>
+<h3 id="虚拟机栈的设置"><a href="#虚拟机栈的设置" class="headerlink" title="虚拟机栈的设置"></a>虚拟机栈的设置</h3><p>虚拟机栈的设置：<strong>每个线程默认会开启1M的内存</strong>，用于存放栈帧、调用参数、局部变量等，但一般256k就够用。通常减少每个线程的堆栈，可以产生更多的线程，但这实际上还受限于操作系统</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xss 对每个线程stack大小的调整，-Xss 128k</span><br></pre></td></tr></table></figure>
+
+<h3 id="年轻代中Eden区和两个Survivor区的大小比例"><a href="#年轻代中Eden区和两个Survivor区的大小比例" class="headerlink" title="年轻代中Eden区和两个Survivor区的大小比例"></a>年轻代中Eden区和两个Survivor区的大小比例</h3><p>设置年轻代中Eden区和两个Survivor区的大小比例。该值如果不设置，则默认比例为8：1：1.通过增大Eden区的大小，来减少YGC（新生代GC）发生的次数，但有时我们发现，虽然次数减少了，但Eden区满的时候，由于占用的空间较大，导致释放缓慢，此时STW的时间较长，因此需要按照程序情况区调优</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XXSurvivorRatio=8，表示年轻代中的分配比率：survivor：Eden=2:8</span><br></pre></td></tr></table></figure>
+
+<h3 id="年轻代晋升老年代阈值"><a href="#年轻代晋升老年代阈值" class="headerlink" title="年轻代晋升老年代阈值"></a>年轻代晋升老年代阈值</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:MaxTenuringThreshold=threshold</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>默认为15</li>
+<li>取值范围0-15</li>
+</ul>
+<h3 id="设置垃圾回收收集器"><a href="#设置垃圾回收收集器" class="headerlink" title="设置垃圾回收收集器"></a>设置垃圾回收收集器</h3><p>通过增大吞吐量提供系统性能，可以通过设置并行垃圾回收收集器</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseParallelGC</span><br><span class="line">-XX:+UseParallelOldGC</span><br><span class="line">-XX:+UseG1GC</span><br></pre></td></tr></table></figure>
+
+<h2 id="JVM调优的工具"><a href="#JVM调优的工具" class="headerlink" title="JVM调优的工具"></a>JVM调优的工具</h2><ul>
+<li><p>jsp</p>
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822202158774.png" alt="image-20230822202158774" style="zoom: 50%;">
+</li>
+<li><p>jstack</p>
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822202226779.png" alt="image-20230822202226779" style="zoom:50%;">
+</li>
+<li><p>jmap</p>
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822202254603.png" alt="image-20230822202254603" style="zoom:50%;">
+
+
+</li>
+<li><p>jstat</p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822202634522.png" alt="image-20230822202634522"></p>
+</li>
+<li><p>jconsole</p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822202711692.png" alt="image-20230822202711692"></p>
+</li>
+<li><p>VisualVM</p>
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822202749462.png" alt="image-20230822202749462"></p>
+</li>
+</ul>
+<h2 id="Java内存泄漏的排查思路"><a href="#Java内存泄漏的排查思路" class="headerlink" title="Java内存泄漏的排查思路"></a>Java内存泄漏的排查思路</h2><p>内存泄漏通常指堆内存，通常是指一些大对象不被回收的情况</p>
+<ol>
+<li><p>通过jmap指定打印他的内存快照dump（dump文件是进程的内存镜像。可以把程序的执行状态通过调试器保存到dump文件中）</p>
+<ul>
+<li><p>使用jmap命令获取运行中程序的dump文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmap -dump:format=b,file=heap.hprof pid</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用vm参数获取dump文件</p>
+<p>有的情况是内存溢出之后程序则会直接中断，而jmap只能打印运行中的程序，所有建议通过参数的方式生成dump文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-XX:+HeapDumpOnOutOfMemoryError</span><br><span class="line">-XX:HeapDumpPath=/xxx/xxx/</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>通过工具，VisualVM去分析dump文件，VisualVM可以加载离线的dump文件</p>
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822204814447.png" alt="image-20230822204814447" style="zoom:50%;">
+</li>
+<li><p>通过查看堆信息的情况，可以大概定位内存溢出是哪行代码出了问题</p>
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822204903222.png" alt="image-20230822204903222" style="zoom:50%;">
+</li>
+<li><p>找到对应的代码，通过阅读上下文的情况，进行修复即可</p>
+</li>
+</ol>
+<h2 id="CPU飙高排查方案与思路"><a href="#CPU飙高排查方案与思路" class="headerlink" title="CPU飙高排查方案与思路"></a>CPU飙高排查方案与思路</h2><ol>
+<li><p>使用top命令查看占用cpu情况</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822210221644.png" alt="image-20230822210221644"></p>
+</li>
+<li><p>通过top命令查看后，可以查看是哪一个进程占用cpu较高，上图为40940进程</p>
+</li>
+<li><p>查看进程中的线程信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps H -eo pid,tid,%cpu | grep 40940</span><br></pre></td></tr></table></figure>
+
+<img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822210411894.png" alt="image-20230822210411894" style="zoom:67%;">
+
+<p>通过以上分析，在进程40940中的线程40950占cpu较高</p>
+</li>
+<li><p>可以根据线程id找到有问题的线程，进一步定位到问题代码的源码行号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack 40940 此处是进程id</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/image-20230822210619142.png" alt="image-20230822210619142"></p>
+</li>
+</ol>
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>本次关于JVM常用面试的分享就先到这里，后续会跟进一些面试题请持续关注。如有不足或错误的地方，请联系小编来及时改正</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://zengjiahao1222.github.io">abb</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://zengjiahao1222.github.io/2023/08/22/JVM%E9%9D%A2%E8%AF%95%E7%AF%87/">https://zengjiahao1222.github.io/2023/08/22/JVM%E9%9D%A2%E8%AF%95%E7%AF%87/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://zengjiahao1222.github.io" target="_blank">豪想敲代码的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B0%8F%E7%99%BD/">小白</a><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a><a class="post-meta__tags" href="/tags/%E7%A8%8B%E5%BA%8F%E4%BA%BA%E7%94%9F/">程序人生</a></div><div class="post_share"><div class="social-share" data-image="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/images/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/images/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/images/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/08/21/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E9%9D%A2%E8%AF%95%E7%AF%87/" title="并发编程面试篇"><img class="cover" src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">并发编程面试篇</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/07/09/HashMap%E7%9A%84%E4%B8%83%E7%A7%8D%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F%E4%B8%8E%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" title="HashMap的七种遍历方式与性能分析"><img class="cover" src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-09</div><div class="title">HashMap的七种遍历方式与性能分析</div></div></a></div><div><a href="/2023/07/20/Arrays-asList-%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/" title="Arrays.asList()避坑指南"><img class="cover" src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-20</div><div class="title">Arrays.asList()避坑指南</div></div></a></div><div><a href="/2023/08/01/Redis%E5%9F%BA%E7%A1%80%E7%AF%87/" title="Redis基础篇"><img class="cover" src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-01</div><div class="title">Redis基础篇</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Valine</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/images/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">abb</div><div class="author-info__description">记录生活与学习</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zengjiahao1222"><i class="fab fa-github"></i><span>关注</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zengjiahao1222" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2939921882@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/2939921882" target="_blank" title="QQ"><i class="fa-brands fa-qq" style="color: #304880;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">微信公众号：豪想敲代码</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E7%BB%84%E6%88%90"><span class="toc-text">JVM组成</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">JVM是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%A8%8B%E5%BA%8F%E8%AE%A1%E7%AE%97%E5%99%A8"><span class="toc-text">什么是程序计算器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%A0%86"><span class="toc-text">Java堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88"><span class="toc-text">虚拟机栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E9%87%8A%E6%94%BE%E6%B6%89%E5%8F%8A%E6%A0%88%E5%86%85%E5%AD%98%EF%BC%9F"><span class="toc-text">垃圾回收机制释放涉及栈内存？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E8%B6%8A%E5%A4%A7%E8%B6%8A%E5%A5%BD%E5%90%97%EF%BC%9F"><span class="toc-text">栈内存分配越大越好吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E5%86%85%E7%9A%84%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E6%98%AF%E5%90%A6%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%EF%BC%9F"><span class="toc-text">方法内的局部变量是否线程安全？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%88%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA"><span class="toc-text">栈内存溢出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">堆栈的区别是什么？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="toc-text">解释一下方法区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F%E6%B1%A0"><span class="toc-text">常量池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%B8%B8%E9%87%8F%E6%B1%A0"><span class="toc-text">运行时常量池</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98"><span class="toc-text">直接内存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84IO%E7%9A%84%E6%95%B0%E6%8D%AE%E6%8B%B7%E8%B4%9D%E6%B5%81%E7%A8%8B"><span class="toc-text">常规IO的数据拷贝流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NIO%E6%95%B0%E6%8D%AE%E6%8B%B7%E8%B4%9D%E6%B5%81%E7%A8%8B"><span class="toc-text">NIO数据拷贝流程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%EF%BC%8C%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="toc-text">什么是类加载器，类加载器有哪些</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B"><span class="toc-text">什么是双亲委派模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM%E4%B8%BA%E4%BB%80%E4%B9%88%E9%87%87%E7%94%A8%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="toc-text">JVM为什么采用双亲委派机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E8%A3%85%E8%BD%BD%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-text">类装载的执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%88%86%E6%9E%90"><span class="toc-text">具体分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-text">垃圾回收</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%9E%83%E5%9C%BE%E5%99%A8%E5%9B%9E%E6%94%B6"><span class="toc-text">对象什么时候可以被垃圾器回收</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95"><span class="toc-text">引用计数法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%BE%BE%E6%80%A7%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="toc-text">可达性分析算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-text">JVM垃圾回收算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4%E7%AE%97%E6%B3%95"><span class="toc-text">标记清除算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0%E6%95%B4%E7%90%86%E7%AE%97%E6%B3%95"><span class="toc-text">标记整理算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-text">复制算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E4%B8%AD%E7%9A%84%E5%88%86%E4%BB%A3%E5%9B%9E%E6%94%B6"><span class="toc-text">JVM中的分代回收</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E4%BB%A3%E6%94%B6%E9%9B%86%E7%AE%97%E6%B3%95%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-text">分代收集算法的工作机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MinorGC%E3%80%81MixedGC%E3%80%81FullGC%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">MinorGC、MixedGC、FullGC的区别是什么</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-text">JVM有哪些垃圾回收器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%B2%E8%A1%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">串行垃圾收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E8%A1%8C%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">并行垃圾收集器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#G1%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">G1垃圾收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Young-Collection%EF%BC%88%E5%B9%B4%E8%BD%BB%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%89"><span class="toc-text">Young Collection（年轻代垃圾回收）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Young-Collection-Concurrent-Mark%EF%BC%88%E5%B9%B4%E8%BD%BB%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6-%E5%B9%B6%E5%8F%91%E6%A0%87%E8%AE%B0%EF%BC%89"><span class="toc-text">Young Collection + Concurrent Mark（年轻代垃圾回收+并发标记）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mixed-Collection%EF%BC%88%E6%B7%B7%E5%90%88%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%89"><span class="toc-text">Mixed Collection（混合垃圾回收）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E5%BC%95%E7%94%A8%E3%80%81%E8%BD%AF%E5%BC%95%E7%94%A8%E3%80%81%E5%BC%B1%E5%BC%95%E7%94%A8%E3%80%81%E8%99%9A%E5%BC%95%E7%94%A8"><span class="toc-text">强引用、软引用、弱引用、虚引用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E5%AE%9E%E8%B7%B5"><span class="toc-text">JVM实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E7%9A%84%E5%8F%82%E6%95%B0%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%93%AA%E9%87%8C%E8%AE%BE%E7%BD%AE%E5%8F%82%E6%95%B0%E5%80%BC"><span class="toc-text">JVM调优的参数可以在哪里设置参数值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-text">JVM调优的参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%A0%86%E7%A9%BA%E9%97%B4%E5%A4%A7%E5%B0%8F"><span class="toc-text">设置堆空间大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">虚拟机栈的设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B4%E8%BD%BB%E4%BB%A3%E4%B8%ADEden%E5%8C%BA%E5%92%8C%E4%B8%A4%E4%B8%AASurvivor%E5%8C%BA%E7%9A%84%E5%A4%A7%E5%B0%8F%E6%AF%94%E4%BE%8B"><span class="toc-text">年轻代中Eden区和两个Survivor区的大小比例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B4%E8%BD%BB%E4%BB%A3%E6%99%8B%E5%8D%87%E8%80%81%E5%B9%B4%E4%BB%A3%E9%98%88%E5%80%BC"><span class="toc-text">年轻代晋升老年代阈值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-text">设置垃圾回收收集器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E8%B0%83%E4%BC%98%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-text">JVM调优的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF"><span class="toc-text">Java内存泄漏的排查思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E9%A3%99%E9%AB%98%E6%8E%92%E6%9F%A5%E6%96%B9%E6%A1%88%E4%B8%8E%E6%80%9D%E8%B7%AF"><span class="toc-text">CPU飙高排查方案与思路</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/08/22/JVM%E9%9D%A2%E8%AF%95%E7%AF%87/" title="JVM面试篇"><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JVM面试篇"/></a><div class="content"><a class="title" href="/2023/08/22/JVM%E9%9D%A2%E8%AF%95%E7%AF%87/" title="JVM面试篇">JVM面试篇</a><time datetime="2023-08-22T13:07:37.000Z" title="发表于 2023-08-22 21:07:37">2023-08-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/21/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E9%9D%A2%E8%AF%95%E7%AF%87/" title="并发编程面试篇"><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="并发编程面试篇"/></a><div class="content"><a class="title" href="/2023/08/21/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E9%9D%A2%E8%AF%95%E7%AF%87/" title="并发编程面试篇">并发编程面试篇</a><time datetime="2023-08-21T11:02:10.000Z" title="发表于 2023-08-21 19:02:10">2023-08-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/19/Java%E9%9B%86%E5%90%88%E9%9D%A2%E8%AF%95%E7%AF%87/" title="Java集合面试篇"><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java集合面试篇"/></a><div class="content"><a class="title" href="/2023/08/19/Java%E9%9B%86%E5%90%88%E9%9D%A2%E8%AF%95%E7%AF%87/" title="Java集合面试篇">Java集合面试篇</a><time datetime="2023-08-18T16:08:49.000Z" title="发表于 2023-08-19 00:08:49">2023-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/17/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E7%AF%87/" title="消息中间件面试篇"><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="消息中间件面试篇"/></a><div class="content"><a class="title" href="/2023/08/17/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E9%9D%A2%E8%AF%95%E7%AF%87/" title="消息中间件面试篇">消息中间件面试篇</a><time datetime="2023-08-17T08:42:38.000Z" title="发表于 2023-08-17 16:42:38">2023-08-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/08/16/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E7%AF%87/" title="微服务面试篇"><img src="https://zengjiahao0531.oss-cn-beijing.aliyuncs.com/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="微服务面试篇"/></a><div class="content"><a class="title" href="/2023/08/16/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%9D%A2%E8%AF%95%E7%AF%87/" title="微服务面试篇">微服务面试篇</a><time datetime="2023-08-16T01:55:32.000Z" title="发表于 2023-08-16 09:55:32">2023-08-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By abb</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'we9IASkINyyVQwNtO2nNEqIF-gzGzoHsz',
+      appKey: 'UqlEJ9quJW7xDTq2U5FvuOoy',
+      avatar: 'monsterid',
+      serverURLs: '',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-sigma-peach.vercel.app/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-sigma-peach.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Valine' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="I,LOVE,YOU" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
