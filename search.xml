@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>多益网络校招-2023-10-17</title>
+      <link href="/2023/10/18/%E5%A4%9A%E7%9B%8A%E7%BD%91%E7%BB%9C%E6%A0%A1%E6%8B%9B-2023-10-17/"/>
+      <url>/2023/10/18/%E5%A4%9A%E7%9B%8A%E7%BD%91%E7%BB%9C%E6%A0%A1%E6%8B%9B-2023-10-17/</url>
+      
+        <content type="html"><![CDATA[<h3 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h3><h3 id="Redis内存"><a href="#Redis内存" class="headerlink" title="Redis内存"></a>Redis内存</h3><h3 id="Kafka流"><a href="#Kafka流" class="headerlink" title="Kafka流"></a>Kafka流</h3><h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><p>AOP为面向切面编程，他将那些与业务无关，却为业务模块所共同调用的逻辑封装起来，便于减少系统的重复代码，降低模块之间的耦合性，并有利于未来的可扩展性和可维护性。</p><p>Spring AOP是基于动态代理的，如果要代理的对象实现了某个接口，就使用JDK代理。对于没有实现接口的对象就得使用Cglib生成一个代理对象的子类作为代理。</p><h3 id="多线程和多进程"><a href="#多线程和多进程" class="headerlink" title="多线程和多进程"></a>多线程和多进程</h3><h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h4><p>优点：</p><ol><li>资源共享：线程间共享同一进程内资源，内存开销较小</li><li>响应速度快：创建、销毁线程所需的时间少，响应速度快</li><li>便于通信：线程间通信相对简单，因为他们共享相同的内存空间</li><li>适合I&#x2F;O密集型任务：当程序中存在大量I&#x2F;O操作时，多线程可以有效提高CPU利用率</li></ol><p>缺点：</p><ol><li>线程安全问题：需要开发者自行处理线程同步和互斥问题，否则可能出现数据竞争和一致性问题</li><li>调试和测试困难：多线程程序的调试和测试相对复杂，因为问题可能难以复现</li><li>性能受限于CPU核心数：在多核心CPU上，多线程程序的性能提升可能受限于核心数，无法无限制地提高性能</li></ol><p>使用场景：</p><ol><li>GUI应用程序：常用于GUI应用程序，保持UI地响应性</li><li>服务器：适用于处理大量短时任务地服务器，如Web服务器</li><li>多媒体处理：适用于音视频处理等多媒体应用</li></ol><h4 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h4><p>优点：</p><ol><li>稳定性高：进程间相互隔离，一个进程的奔溃不会影响其他进程</li><li>利用多核CPU：可以充分利用多核CPU，提高程序的性能</li><li>适用于CPU密集型任务：当程序需要大量的CPU计算时，多进程可以提高整体性能</li></ol><p>缺点：</p><ol><li>资源开销大：每个进程都有独立的内存空间和系统资源，创建和销毁进程的开销较大</li><li>进程间通信复杂：不同进程间的通信比较繁琐，通常需要利用IPC（Inter-Process-Communication）机制，如管道、消息队列等</li><li>启动速度慢：相当于线程，进程的启动速度较慢</li></ol><p>使用场景：</p><ol><li>CPU密集型任务：需要大量计算的任务，如科学计算、图像处理</li><li>独立性要求高的任务：各种服务器进程</li><li>容错性要求高的任务：当需要确保一个任务的奔溃不影响其他任务时，可以选择多进程</li></ol><h3 id="将一个正整数分解质因数"><a href="#将一个正整数分解质因数" class="headerlink" title="将一个正整数分解质因数"></a>将一个正整数分解质因数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder res=<span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line"><span class="type">int</span> i=<span class="number">2</span>;<span class="comment">//起始除数</span></span><br><span class="line"><span class="keyword">while</span>(number&gt;<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(number%i==<span class="number">0</span>)&#123;</span><br><span class="line">        res.append(i).append(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        number=number/i;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="求一集合的所有子集"><a href="#求一集合的所有子集" class="headerlink" title="求一集合的所有子集"></a>求一集合的所有子集</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;List&lt;Integer&gt;&gt; <span class="title function_">buildSubSet</span><span class="params">(<span class="type">int</span>[] nums)</span>&#123;</span><br><span class="line">List&lt;List&lt;Integer&gt;&gt; res=<span class="keyword">new</span> <span class="title class_">ArryayList</span>&lt;&gt;();</span><br><span class="line">    res.add(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;());</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">        <span class="comment">//获取当前子集的个数</span></span><br><span class="line">        <span class="type">int</span> size=res.size();</span><br><span class="line">        <span class="comment">//取出当前的所有子集然后添加nums[i]</span></span><br><span class="line">        <span class="comment">//最后再返回添加到res</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;size;j++)&#123;</span><br><span class="line">            List&lt;Integer&gt; clone=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(res.get(j));</span><br><span class="line">            clone.add(nums[i]);</span><br><span class="line">            res.add(clone);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="互联网工作强度大"><a href="#互联网工作强度大" class="headerlink" title="互联网工作强度大"></a>互联网工作强度大</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面经 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 小白 </tag>
+            
+            <tag> 学习 </tag>
+            
+            <tag> 面经 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>KUS校招-2023-10-12</title>
       <link href="/2023/10/16/KUS%E6%A0%A1%E6%8B%9B-2023-10-12/"/>
       <url>/2023/10/16/KUS%E6%A0%A1%E6%8B%9B-2023-10-12/</url>
@@ -34,8 +63,8 @@
     
     <entry>
       <title>途虎养车校招一面-2023-11-12</title>
-      <link href="/2023/10/13/%E9%80%94%E8%99%8E%E5%85%BB%E8%BD%A6%E6%A0%A1%E6%8B%9B%E4%B8%80%E9%9D%A2-2023-11-12/"/>
-      <url>/2023/10/13/%E9%80%94%E8%99%8E%E5%85%BB%E8%BD%A6%E6%A0%A1%E6%8B%9B%E4%B8%80%E9%9D%A2-2023-11-12/</url>
+      <link href="/2023/10/13/%E9%80%94%E8%99%8E%E5%85%BB%E8%BD%A6%E6%A0%A1%E6%8B%9B%E4%B8%80%E9%9D%A2-2023-10-12/"/>
+      <url>/2023/10/13/%E9%80%94%E8%99%8E%E5%85%BB%E8%BD%A6%E6%A0%A1%E6%8B%9B%E4%B8%80%E9%9D%A2-2023-10-12/</url>
       
         <content type="html"><![CDATA[<h3 id="手写业务编程题"><a href="#手写业务编程题" class="headerlink" title="手写业务编程题"></a>手写业务编程题</h3><h3 id="挑一个项目，介绍一下是什么架构，怎么分工，遇到了什么困难，怎么解决"><a href="#挑一个项目，介绍一下是什么架构，怎么分工，遇到了什么困难，怎么解决" class="headerlink" title="挑一个项目，介绍一下是什么架构，怎么分工，遇到了什么困难，怎么解决"></a>挑一个项目，介绍一下是什么架构，怎么分工，遇到了什么困难，怎么解决</h3><p>这个值得好好想想了</p><h3 id="Redis基本的数据结构"><a href="#Redis基本的数据结构" class="headerlink" title="Redis基本的数据结构"></a>Redis基本的数据结构</h3><h3 id="MySQL事务"><a href="#MySQL事务" class="headerlink" title="MySQL事务"></a>MySQL事务</h3><h3 id="索引的好处"><a href="#索引的好处" class="headerlink" title="索引的好处"></a>索引的好处</h3><h3 id="什么字段适合作为索引"><a href="#什么字段适合作为索引" class="headerlink" title="什么字段适合作为索引"></a>什么字段适合作为索引</h3><h3 id="Redis事务"><a href="#Redis事务" class="headerlink" title="Redis事务"></a>Redis事务</h3><h3 id="RDB和AOF"><a href="#RDB和AOF" class="headerlink" title="RDB和AOF"></a>RDB和AOF</h3><h3 id="Redis单线程是如何实现多线程"><a href="#Redis单线程是如何实现多线程" class="headerlink" title="Redis单线程是如何实现多线程"></a>Redis单线程是如何实现多线程</h3><h3 id="Redis拒绝策略"><a href="#Redis拒绝策略" class="headerlink" title="Redis拒绝策略"></a>Redis拒绝策略</h3><h3 id="数据库和缓存的一致性"><a href="#数据库和缓存的一致性" class="headerlink" title="数据库和缓存的一致性"></a>数据库和缓存的一致性</h3><h3 id="线程池的核心参数"><a href="#线程池的核心参数" class="headerlink" title="线程池的核心参数"></a>线程池的核心参数</h3><h3 id="kafka如何保证消息不重复消费"><a href="#kafka如何保证消息不重复消费" class="headerlink" title="kafka如何保证消息不重复消费"></a>kafka如何保证消息不重复消费</h3><h3 id="实现接口幂等性"><a href="#实现接口幂等性" class="headerlink" title="实现接口幂等性"></a>实现接口幂等性</h3><h3 id="…想不起来了"><a href="#…想不起来了" class="headerlink" title="…想不起来了"></a>…想不起来了</h3>]]></content>
       
